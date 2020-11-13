@@ -28,4 +28,4 @@ var romanToInt = function(s) {
     }
     return integer;
 };
-console.log(romanToInt('XIV'));
+//console.log(romanToInt('XIV'));

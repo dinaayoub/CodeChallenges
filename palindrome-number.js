@@ -14,9 +14,9 @@ var isPalindrome = function (x) {
         let temp = x%10; 
         x = Math.floor(x/10);
         reverseNumber = reverseNumber*10 + temp;
-        console.log(`x = ${x}, reverseNumber = ${reverseNumber}`)
+        //console.log(`x = ${x}, reverseNumber = ${reverseNumber}`)
     }
     if (reverseNumber === number) return true;
     else return false;
 };
-console.log(isPalindrome(123));
+//console.log(isPalindrome(123));
