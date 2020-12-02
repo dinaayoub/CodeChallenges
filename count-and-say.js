@@ -6,21 +6,25 @@ var countAndSay = function (n) {
     if (n === 1) return '1';
     else {
         var result = '1';
-        var pointer = 0;
-        var tempValue = '';
-        var counter = 0;
-        for (let i = 1; i <= n; i++) {
+        for (let i = 2; i <= n; i++) {
+            var tempValue = '';
+            var counter = 0;
             var arrayOfN = result.split('');
+            result = '';
             tempValue = arrayOfN[0];
-            for (let j = 0; j< arrayOfN.length; j++) {
-                if (arrayOfN[j] === tempValue) counter++;
-                else {
-                    result += counter + tempValue;
-                    tempValue = arrayOfN[j];
+            for (let j = 0; j < arrayOfN.length; j++) {
+               if (arrayOfN[j] === tempValue) { 
+                    counter++; 
                 }
+                else {
+                    result += `${counter}${tempValue}`;
+                    tempValue = arrayOfN[j];
+                    counter = 1;
+                }
+                if (j === arrayOfN.length-1) result += `${counter}${tempValue}`;   
             }
         }
+        return result;
     }
-
 };
-console.log(countAndSay(2));
+console.log(countAndSay(6));
