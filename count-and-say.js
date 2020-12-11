@@ -6,7 +6,7 @@ var countAndSay = function (n) {
     if (n === 1) return '1';
     else {
         var result = '1';
-        for (let i = 2; i <= n; i++) {
+        for (let i = 1; i <= n; i++) {
             var tempValue = '';
             var counter = 0;
             var arrayOfN = result.split('');
