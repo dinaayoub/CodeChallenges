@@ -4,31 +4,23 @@
  * @return {number}
  */
 var strStr = function (haystack, needle) {
-    var charHaystack = haystack.split('');
-    var charNeedle = needle.split('');
-
-    if (needle === '') return 0; //empty string passed in
-    var startOfString = -1;
-    var j = 0;
-    for (let i = 0; i < charHaystack.length; i++) {
-        if (charHaystack[i] !== charNeedle[j]) {
-            j = 0;
-            startOfString = -1;
-        } else if (j!==0 && j === needle.length - 1) {
-            //we've matched the entire string! return the index of the start of the string
-            console.log('match found at i = ' + i + ' and j = ' + j);
-            return startOfString;
-        } else if (j === 0) {
-            console.log('start of string set to i = ' + i);
-            startOfString = i;
-            j++;
-        } else {
-            //only happens if needle is > 2 characters. 
+    if (!needle) return 0;
+    let index = -1;
+    let j = 0;
+    for (let i = 0; i < haystack.length; i++) {
+        if (haystack[i] === needle[j] && j === needle.length - 1) {
+            index = i - needle.length + 1;
+            return index;
+        }
+        else if (haystack[i] === needle[j]) {
             j++;
         }
-
+        else {
+            i = i - j;
+            j = 0;
+        }
     }
-    return startOfString;
+    return index;
 };
 
 console.log(strStr('heello', 'el'))
