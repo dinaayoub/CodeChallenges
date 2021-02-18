@@ -28,9 +28,13 @@ function minimumBribes(queue) {
       console.log(`incrementing bribes by 2, minBribes = ${minBribes}`)
       console.log('new correctOrder = ', correctOrder);
     }
-    else return 'Too chaotic'
+    else {
+      console.log('Too chaotic');
+      return;
+    }
   }
-  return minBribes;
+  console.log(minBribes);
 }
 
-console.log(minimumBribes([1, 2, 5, 3, 7, 8, 6, 4]));
+minimumBribes([1, 2, 5, 3, 7, 8, 6, 4]);
+minimumBribes([1, 2, 5, 3, 4, 7, 8, 6]);
