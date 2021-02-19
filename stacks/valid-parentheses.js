@@ -17,11 +17,9 @@ var isValid = function (s) {
                 opens.pop();
             } else {
                 return false;
-
             }
         }
     }
     if (opens.length === 0) return true;
     else return false;
 };
-console.log(isValid('{[]}'));
