@@ -1,40 +1,44 @@
+const object = require('./res.json');
+
+const val = object.value.split(' ');
+console.log(val);
+
 function minimumBribes(queue) {
-  let correctOrder = [];
-  for (let i = 0; i < queue.length; i++) {
-    correctOrder[i] = i + 1;
-  }
-  console.log(correctOrder);
-  if (queue === correctOrder) return 0;
+  /*Create a function minimumBribes that takes in a number of people in the queue, and console logs the number of minimum bribes
+  Declare minimum bribes = 0;
+  Declare a queue where length = n-1 and each value is = index + 1 , call it temp
+  Loop on the resulting queue from i=0 to i<queue length
+  If result queue at I is temp at I, do nothing.
+  If result queue at I is temp at i+1 bribe ++;
+  If result queue at I is temp at i+2 -> bribe +=2
+  If result queue at I is > temp at i+2 --> too chaotic
+  */
   let minBribes = 0;
-  for (let j = queue.length - 1; j > 0; j--) {
-    console.log(`j = ${j}`);
-    console.log('queue at ' + j + ' = ', queue[j]);
-    console.log('correct at ' + j + ' = ', correctOrder[j]);
-    if (correctOrder[j] === queue[j]) {
-      console.log('element in its correct position.')
-    }
-    else if (correctOrder[j] === queue[j - 1]) {
+  let temp = [];
+  for (let i = 0; i < queue.length; i++) {
+    temp[i] = i + 1;
+  }
+
+  for (let j = 0; j < queue.length; j++) {
+    if (queue[j] == temp[j + 1]) {// => min bribes + 1
       minBribes++;
-      let popped = correctOrder.pop();
-      correctOrder.splice(j - 1, 0, popped);
-      console.log(`incrementing bribes by 1, minBribes = ${minBribes}`)
-      console.log('new correctOrder = ', correctOrder);
-    }
-    else if (correctOrder[j] === queue[j - 2]) {
+      let num = temp.splice(j + 1, 1);
+      temp.splice(j, 0, num);
+    } else if (queue[j] == temp[j + 2]) {
       minBribes += 2;
-      let popped = correctOrder.pop();
-      console.log('popped off correctOrder = ', correctOrder);
-      correctOrder.splice(j - 2, 0, popped);
-      console.log(`incrementing bribes by 2, minBribes = ${minBribes}`)
-      console.log('new correctOrder = ', correctOrder);
-    }
-    else {
-      console.log('Too chaotic');
-      return;
+      let num = temp.splice(j + 2, 1);
+      temp.splice(j, 0, num);
+    } else if (queue[j] > temp[j + 2]) {
+      minBribes = 'Too chaotic';
+      break;
     }
   }
   console.log(minBribes);
+  return minBribes;
 }
 
-minimumBribes([1, 2, 5, 3, 7, 8, 6, 4]);
-minimumBribes([1, 2, 5, 3, 4, 7, 8, 6]);
+
+minimumBribes([1, 2, 5, 3, 7, 8, 6, 4]); // expected output: 7
+minimumBribes([1, 2, 5, 3, 4, 7, 8, 6]); // expected output: 4
+minimumBribes([5, 1, 2, 3, 7, 8, 6, 4]); // expected output: Too chaotic
+minimumBribes(val);
