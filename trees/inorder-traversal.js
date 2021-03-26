@@ -26,3 +26,21 @@ var inorderTraversal = function (root) {
 };
 
 //solution is faster than 92.9% and uses less memory than 89%
+
+//Now for the iterative solution
+function inOrder(root) {
+  if (!root) return null;
+  let stack = [];
+  let result = [];
+  let currentNode = root;
+  while (currentNode) {
+    stack.push(currentNode);
+    currentNode = currentNode.left;
+    if (!currentNode && stack.length > 0) {
+      let item = stack.pop();
+      result.push(item.val)
+      currentNode = item.right;
+    }
+  }
+  return result;
+}
